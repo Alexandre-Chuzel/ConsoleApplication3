@@ -16,11 +16,15 @@ class Graphe {
 private:
     vector<shared_ptr<Arc>> ArcsDuGraphe;
     vector<shared_ptr<Sommet>> SommetsDuGraphe;
-    vector<shared_ptr<Arc>>ArcsDuGrapheAffiches;
+    //vector<string>ArcsDuGrapheAffiches;
 
 public:
     Graphe() {}
     ~Graphe() {}
+    Graphe(vector<shared_ptr<Sommet>> SommetsDuGraphe,vector<shared_ptr<Arc>> ArcsDuGraphe) {
+        this->SommetsDuGraphe = SommetsDuGraphe;
+        this->ArcsDuGraphe = ArcsDuGraphe;
+    }
     const vector<shared_ptr<Arc>>& GetArcs() const {
         return ArcsDuGraphe;
     }
@@ -54,7 +58,7 @@ public:
                 while (getline(fichier, ligne) && ligne.find("]") == string::npos) {
                     if (ligne.find("Numero=") != string::npos) {
                         size_t pos = ligne.find("=");
-                        int numeroSommet = stoi(ligne.substr(pos + 1));
+                        string numeroSommet = ligne.substr(pos + 1);
                         SommetsDuGraphe.push_back(make_shared<Sommet>(numeroSommet));
                     }
                 }
@@ -63,9 +67,11 @@ public:
                 while (getline(fichier, ligne) && ligne.find("]") == string::npos) {
                     if (ligne.find("Debut=") != std::string::npos && ligne.find("Fin=") != string::npos) {
                         size_t posDebut = ligne.find("=");
-                        size_t posFin = ligne.find("=", posDebut + 1);
-                        string debutArcStr = ligne.substr(posDebut + 1,1);
-                        string finArcStr = ligne.substr(posFin + 1,1);
+                        size_t posDebutFin = ligne.find(",");
+                        //size_t posFin = ligne.find("=", posDebut + 1);
+                        //size_t posFinFin = ligne.find("D", posDebut + 1);
+                        string debutArcStr = ligne.substr(posDebut + 1, posDebutFin - posDebut - 1);
+                        string finArcStr = ligne.substr(posDebut + posDebutFin);
                         ArcsDuGraphe.push_back(make_shared<Arc>(debutArcStr, finArcStr));
                     }
                 }
@@ -74,21 +80,20 @@ public:
 
         fichier.close();
     }
-    void SupprimerSommet(int delsommet) {
-        string dellsommet2 = to_string(delsommet);
+    void SupprimerSommet(string delsommet) {
         auto it = SommetsDuGraphe.begin();
         while (it != SommetsDuGraphe.end()) {
             if (delsommet == (*it)->GetNumero()) {
                 (*it).reset();
-                it = SommetsDuGraphe.erase(it); 
+                it = SommetsDuGraphe.erase(it);
             }
             else {
-                ++it; 
+                ++it;
             }
         }
         auto it2 = ArcsDuGraphe.begin();
         while (it2 != ArcsDuGraphe.end()) {
-            if (dellsommet2 == (*it2)->GetDebut() || dellsommet2 == (*it2)->GetFin()) {
+            if (delsommet == (*it2)->GetDebut() || delsommet == (*it2)->GetFin()) {
                 (*it2).reset();
                 it2 = ArcsDuGraphe.erase(it2);
             }
@@ -97,34 +102,32 @@ public:
             }
         }
     }
-    void AjouterSommet(int numSommet) {
+    void AjouterSommet(string numSommet) {
         bool sommetExiste = false;
         for (auto it = SommetsDuGraphe.begin(); it != SommetsDuGraphe.end(); ++it) {
-                if (numSommet == (*it)->GetNumero()) {
-                    cout << "Le sommet existe déja" << endl;
-                    sommetExiste = true;
-                }
+            if (numSommet == (*it)->GetNumero()) {
+                cout << "Le sommet existe déja" << endl;
+                sommetExiste = true;
+            }
         }
-        if (sommetExiste ==false) {
+        if (sommetExiste == false) {
             SommetsDuGraphe.push_back(make_shared<Sommet>(numSommet));
         }
-            
+
     }
-    void SupprimerArc(string delarcdeb,string delarcfin) {
+    void SupprimerArc(string delarcdeb, string delarcfin) {
         for (auto it = ArcsDuGraphe.begin(); it != ArcsDuGraphe.end(); ++it) {
-            if (delarcdeb == (*it)->GetDebut() and delarcfin== (*it)->GetFin()) {
+            if (delarcdeb == (*it)->GetDebut() and delarcfin == (*it)->GetFin()) {
                 (*it).reset();
                 ArcsDuGraphe.erase(it);
                 break;
             }
         }
     }
-    void AjouterArc(string debutArcStr,string finArcStr) {
+    void AjouterArc(string debutArcStr, string finArcStr) {
         bool  arcExiste = false;
-        int debutArcStr2 = stoi(debutArcStr);
-        int finArcStr2 = stoi(finArcStr);
-        AjouterSommet(finArcStr2);
-        AjouterSommet(debutArcStr2);
+        AjouterSommet(finArcStr);
+        AjouterSommet(debutArcStr);
         for (auto it = ArcsDuGraphe.begin(); it != ArcsDuGraphe.end(); ++it) {
             if (debutArcStr == (*it)->GetDebut() and finArcStr == (*it)->GetFin()) {
                 arcExiste = true;
@@ -183,16 +186,17 @@ public:
         }
     }
     void AfficherGraphe5() const {
-        vector<shared_ptr<Arc>> ArcsDuGrapheAffiches;
+        //vector<shared_ptr<Arc>> ArcsDuGrapheAffiches;
+        vector<string>ArcsDuGrapheAffiches;
         for (const auto& arc : ArcsDuGraphe) {
-            if (IsGrapheAffiches(arc->GetDebut(), arc->GetFin())==false) {
-                ArcsDuGrapheAffiches.push_back(make_shared<Arc>(arc->GetDebut(), arc->GetFin()));
+            if (IsGrapheAffiches(ArcsDuGrapheAffiches, arc->GetDebut()) == false) {
+                ArcsDuGrapheAffiches.push_back(arc->GetDebut());
                 cout << arc->GetDebut() << " ---> ";
                 bool first = true;
                 for (const auto& arc2 : ArcsDuGraphe) {
                     if (arc->GetDebut() == arc2->GetDebut()) {
                         if (!first)
-                            cout << ", ";
+                            cout << ",";
                         cout << arc2->GetFin();
                         first = false;
                     }
@@ -201,17 +205,43 @@ public:
             }
         }
     }
-    bool IsGrapheAffiches(string a, string b) const {
+
+    bool IsGrapheAffiches(vector<string>ArcsDuGrapheAffiches, string a) const {
         bool arcExiste = false;
         for (auto it = ArcsDuGrapheAffiches.begin(); it != ArcsDuGrapheAffiches.end(); ++it) {
-            cout << (*it)->GetDebut() << endl;
-            cout << (*it)->GetFin() << endl;
-            if (a == (*it)->GetDebut() and b == (*it)->GetFin()) {
+            if (a == *it) {
                 arcExiste = true;
                 break;
             }
         }
         return arcExiste;
     }
+ 
+    /*void InverserGraphe() {
+        int i = 0;
+        while (i < ArcsDuGraphe.size()) {
+            for (auto it = ArcsDuGraphe.begin(); it != ArcsDuGraphe.end(); ++it) {
+                string a;
+                a = (*it)->GetFin();
+                (*it)->GetFin() = (*it)->GetDebut();
+                (*it)->GetDebut() = a;
+                //(*it).reset();
+                ArcsDuGraphe.push_back(make_shared<Arc>((*it)->GetFin(), (*it)->GetDebut()));
+                ArcsDuGraphe.erase(ArcsDuGraphe.begin());
+                i++;
+            }
+        }
+    }*/
+    Graphe InverserGraphe() {
+        vector<shared_ptr<Arc>> newArcs;
+        vector<shared_ptr<Sommet>> newSommet;
+        for (auto it = ArcsDuGraphe.begin(); it != ArcsDuGraphe.end(); ++it) {
+            newArcs.push_back(make_shared<Arc>((*it)->GetFin(), (*it)->GetDebut()));
+        }
+        newSommet = SommetsDuGraphe;
+        Graphe newGraphe(newSommet,newArcs);
 
+        return newGraphe;
+    }
+   
 };

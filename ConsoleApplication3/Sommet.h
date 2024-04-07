@@ -9,12 +9,12 @@ using namespace std;
 class Sommet
 {
 private:
-	int NumSommet;
+	string NumSommet;
 	vector<shared_ptr<Arc>>PartDuSommet;
 	vector<shared_ptr<Arc>>ArriveAuSommet;
 public:
-	Sommet(int num) : NumSommet(num) {}
-	int GetNumero() const {
+	Sommet(string num) : NumSommet(num) {}
+	string GetNumero() const {
 		return NumSommet;
 	}
 };
