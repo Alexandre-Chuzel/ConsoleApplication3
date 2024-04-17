@@ -42,37 +42,49 @@ public:
 
         string ligne;
         while (getline(fichier, ligne)) {
-            if (ligne.find("NBSommets=") != string::npos) {
-                size_t pos = ligne.find("=");
+            size_t pos = ligne.find("=");
+            if (pos != string::npos) { 
+                transform(ligne.begin(), ligne.begin() + pos, ligne.begin(), ::tolower);
+            }
+            if (ligne.find("nbsommets=") != string::npos) {
                 int startPos = static_cast<int>(pos) + 1;
                 int nombreSommets = stoi(ligne.substr(startPos));
                 cerr << nombreSommets << endl;
             }
-            else if (ligne.find("NBArcs=") != string::npos) {
-                size_t pos = ligne.find("=");
+            else if (ligne.find("nbarcs=") != string::npos) {
+                //size_t pos = ligne.find("=");
                 int nombreArcs = stoi(ligne.substr(pos + 1));
                 cerr << nombreArcs << endl;
 
             }
-            else if (ligne.find("Sommets=[") != string::npos) {
+            else if (ligne.find("sommets=[") != string::npos) {
                 while (getline(fichier, ligne) && ligne.find("]") == string::npos) {
-                    if (ligne.find("Numero=") != string::npos) {
-                        size_t pos = ligne.find("=");
+                    pos = ligne.find("=");
+                    if (pos != string::npos) { 
+                        transform(ligne.begin(), ligne.begin() + pos, ligne.begin(), ::tolower);
+                    }
+                    if (ligne.find("numero=") != string::npos) {
+                        //size_t pos = ligne.find("=");
                         string numeroSommet = ligne.substr(pos + 1);
                         SommetsDuGraphe.push_back(make_shared<Sommet>(numeroSommet));
                     }
                 }
             }
-            else if (ligne.find("Arcs=[") != string::npos) {
+            else if (ligne.find("arcs=[") != string::npos) {
                 while (getline(fichier, ligne) && ligne.find("]") == string::npos) {
-                    if (ligne.find("Debut=") != std::string::npos && ligne.find("Fin=") != string::npos) {
-                        size_t posDebut = ligne.find("=");
-                        size_t posDebutFin = ligne.find(",");
-                        //size_t posFin = ligne.find("=", posDebut + 1);
-                        //size_t posFinFin = ligne.find("D", posDebut + 1);
-                        string debutArcStr = ligne.substr(posDebut + 1, posDebutFin - posDebut - 1);
-                        string finArcStr = ligne.substr(posDebut + posDebutFin);
-                        ArcsDuGraphe.push_back(make_shared<Arc>(debutArcStr, finArcStr));
+                    size_t posDebut = ligne.find("=");
+                    size_t posDebutFin = ligne.find(",");
+                    size_t posFin = ligne.find("=", posDebut + 1);
+                    if (posDebut != string::npos && posDebutFin != string::npos && posFin != string::npos) { 
+                        transform(ligne.begin(), ligne.begin() + posDebut, ligne.begin(), ::tolower);
+                        transform(ligne.begin() + posDebutFin, ligne.begin() + posFin, ligne.begin() + posDebutFin, ::tolower);
+                        if (ligne.find("debut=") != std::string::npos && ligne.find("fin=") != string::npos) {
+                            //size_t posFin = ligne.find("=", posDebut + 1);
+                            //size_t posFinFin = ligne.find("D", posDebut + 1);
+                            string debutArcStr = ligne.substr(posDebut + 1, posDebutFin - posDebut - 1);
+                            string finArcStr = ligne.substr(posDebut + posDebutFin);
+                            ArcsDuGraphe.push_back(make_shared<Arc>(debutArcStr, finArcStr));
+                        }
                     }
                 }
             }
@@ -106,7 +118,7 @@ public:
         bool sommetExiste = false;
         for (auto it = SommetsDuGraphe.begin(); it != SommetsDuGraphe.end(); ++it) {
             if (numSommet == (*it)->GetNumero()) {
-                cout << "Le sommet existe déja" << endl;
+                //cout << "Le sommet existe déja" << endl;
                 sommetExiste = true;
             }
         }
@@ -143,10 +155,10 @@ public:
             cout << "Sommet " << sommet->GetNumero() << endl;
         }
 
-        cout << "Liste des arcs :" << endl;
+       /* cout << "Liste des arcs :" << endl;
         for (const auto& arc : ArcsDuGraphe) {
             cout << "Arc de " << arc->GetDebut() << " à " << arc->GetFin() << endl;
-        }
+        }*/
     }
     void AfficherGraphe2() const {
         for (const auto& arc : ArcsDuGraphe) {
