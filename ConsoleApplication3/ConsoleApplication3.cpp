@@ -3,11 +3,13 @@
 #include "Sommet.h"
 #include "Arc.h"
 #include <iostream>
-int main() {
+int main(int argc, char* argv[]) {
     Graphe<Sommet, Arc> graphe;
-    graphe.ChargerDepuisFichier("C:\\Users\\alexa\\Documents\\Graphe2.txt");
-   // cout << "Nombre de sommets : " << graphe.GetSommets().size() << endl;
+  //graphe.ChargerDepuisFichier("C:\\Users\\alexa\\Documents\\Graphe2.txt");
+  // cout << "Nombre de sommets : " << graphe.GetSommets().size() << endl;
   //  cout << "Nombre d'arcs : " << graphe.GetArcs().size() << endl;
+    string file_path = argv[1];
+    graphe.ChargerDepuisFichier(file_path);
     graphe.SupprimerSommet("3");
     graphe.SupprimerArc("2","3");
    //cout << "Nombre de sommets : " << graphe.GetSommets().size() << endl;
@@ -29,10 +31,10 @@ int main() {
     cout << "graphe inversé :" << endl;
     graphe2.AfficherGraphe5();
     //Graphe2<Sommet, Arc> graphe3;
-   // graphe3.AjouterArc("4", "5");
+    //graphe3.AjouterArc("4", "5");
     //graphe3.AjouterArc("4", "5"); 
     //cout << "" << endl;
-   // graphe3.AfficherGraphe();
+    //graphe3.AfficherGraphe();
    // graphe3.AfficherGraphe5();
     return 0;
 }
