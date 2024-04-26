@@ -13,6 +13,7 @@
 
 using namespace std;
 
+//CONSTRUCTEURS ET MÉTHODES
 template <class CSommet, class CArc>
 CGraphOrient<CSommet, CArc>::CGraphOrient() {
 }
@@ -27,6 +28,15 @@ CGraphOrient< CSommet,  CArc>::CGraphOrient(vector<shared_ptr<CSommet>> vsSommet
     this->vaGROArcsDuGraphe = vaArcs;
 }
 
+/****************************************************************
+    *GRAAjouterArete
+    * ***********************************************************
+    * Entrée : string sDelsommet
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Supprime un sommet du graphe et supprime 
+    * un arc si le sommet faisait parti de celui-ci.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROSupprimerSommet(string sDelsommet) {
     auto it = vsGROSommetsDuGraphe.begin();
@@ -52,6 +62,15 @@ void CGraphOrient< CSommet,  CArc>::GROSupprimerSommet(string sDelsommet) {
     }
 }
 
+/****************************************************************
+    *GROAjouterSommet
+    * ***********************************************************
+    * Entrée : string sNumSommet
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Ajoute un sommet au graphe tout en vérifiant 
+    * que celui-ci n'existe pas déja.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROAjouterSommet(string sNumSommet) {
     bool bSommetExiste = false;
@@ -66,6 +85,14 @@ void CGraphOrient< CSommet,  CArc>::GROAjouterSommet(string sNumSommet) {
         vsGROSommetsDuGraphe.push_back(make_shared<CSommet>(sNumSommet));
     }
 }
+/****************************************************************
+    *GROSupprimerArc
+    * ***********************************************************
+    * Entrée : string sDelarcdeb, string sDelarcfin
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Supprime un arc du graphe.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROSupprimerArc(string sDelarcdeb, string sDelarcfin) {
     for (auto it = vaGROArcsDuGraphe.begin(); it != vaGROArcsDuGraphe.end(); ++it) {
@@ -76,6 +103,16 @@ void CGraphOrient< CSommet,  CArc>::GROSupprimerArc(string sDelarcdeb, string sD
         }
     }
 }
+
+/****************************************************************
+    *GROAjouterArc
+    * ***********************************************************
+    * Entrée : string sDebutArcStr, string sFinArcStr
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Ajoute un arc au graphe 
+    * tout en vérifiant qu'il n'existe pas.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROAjouterArc(string sDebutArcStr, string sFinArcStr) {
     bool bArcExiste = false;
@@ -93,6 +130,15 @@ void CGraphOrient< CSommet,  CArc>::GROAjouterArc(string sDebutArcStr, string sF
         vaGROArcsDuGraphe.push_back(make_shared<CArc>(sDebutArcStr, sFinArcStr));
     }
 }
+
+/****************************************************************
+    *GROAfficherGraphe
+    * ***********************************************************
+    * Entrée : Rien
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Affiche tout les sommets du graphe.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe() const {
     cout << "Liste des sommets :" << endl;
@@ -100,24 +146,31 @@ void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe() const {
         cout << "CSommet " << CSommet->GetNumero() << endl;
     }
 }
+
+/****************************************************************
+    *GROAfficherGraphe2
+    * ***********************************************************
+    * Entrée : Rien
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Affichge simple des différents arcs du graphe.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe2() const {
     for (const auto& CArc : vaGROArcsDuGraphe) {
         cout << CArc->GetDebut() << " ---> " << CArc->GetFin() << endl;
     }
 }
-template <class CSommet, class CArc>
-void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe4() const {
-    for (const auto& CArc : vaGROArcsDuGraphe) {
-        cout << CArc->GetDebut() << " ---> ";
-        for (const auto& arc2 : vaGROArcsDuGraphe) {
-            if (CArc->GetDebut() == arc2->GetDebut()) {
-                cout << arc2->GetFin() << ", ";
-            }
-        }
-        cout << endl;
-    }
-}
+
+/****************************************************************
+    *GROAfficherGraphe5
+    * ***********************************************************
+    * Entrée : Rien
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Affiche les arcs du graphe de façon précise
+    * (sommet relié à plusieurs graphe non répété).
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe5() const {
     vector<string> vsArcsDuGrapheAffiches;
@@ -139,6 +192,18 @@ void CGraphOrient< CSommet,  CArc>::GROAfficherGraphe5() const {
     }
 }
 
+/****************************************************************
+    *GROIsGrapheAffiches
+    * ***********************************************************
+    * Entrée : vector<string> vsArcsDuGrapheAffiches, string sSommetActuel
+    * Nécessite : Rien
+    * Sortie : bool bArcExiste
+    * Entraine : Permet de détecter si un sommet a déja été affiché 
+    * ce qui permet de ne pas répéter l'arc dont il fait parti.
+    * Par exemple si l'arc 2->3,4,5 est affiché lorsque l'on affiche les arcs liés à 2,
+    * lorsque l'on va afficher ceux liés à 3, cet algorithme détecte que 2 est déja affiché et ne va
+    * pas répéter l'arc 2->3,4,5 idem lorsque ce sera le tour de 4 et 5.
+*****************************************************************/
 template <class CSommet, class CArc>
 bool CGraphOrient< CSommet,  CArc>::GROIsGrapheAffiches(vector<string> vsArcsDuGrapheAffiches, string sSommetActuel) const {
     bool bArcExiste = false;
@@ -150,6 +215,15 @@ bool CGraphOrient< CSommet,  CArc>::GROIsGrapheAffiches(vector<string> vsArcsDuG
     }
     return bArcExiste;
 }
+
+/****************************************************************
+    *GROInverserGraphe
+    * ***********************************************************
+    * Entrée : Rien
+    * Nécessite : Avoir un Graphe existant
+    * Sortie : CGraphOrient< CSommet,  CArc> newGraphe
+    * Entraine : La création d'un nouveau Graphe possédant des arcs inversés.
+*****************************************************************/
 template <class CSommet, class CArc>
 CGraphOrient< CSommet,  CArc> CGraphOrient< CSommet,  CArc>::GROInverserGraphe() {
     vector<shared_ptr<CArc>> vaNewArcs;
@@ -162,6 +236,18 @@ CGraphOrient< CSommet,  CArc> CGraphOrient< CSommet,  CArc>::GROInverserGraphe()
 
     return newGraphe;
 }
+
+/****************************************************************
+    *GROChargerDepuisFichier
+    * ***********************************************************
+    * Entrée : const string& sNomFichier
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Permet de créer le Graphe à partir d'un fichier texte.
+    * Le parseur n'est pas sensible à la casse car il ignore les espaces,
+    * ignore les majuscules/minuscules et les différentes ponctuations 
+    * d'un autre type que celles présente dans la structure de base du fichier.
+*****************************************************************/
 template <class CSommet, class CArc>
 void CGraphOrient< CSommet,  CArc>::GROChargerDepuisFichier(const string& sNomFichier) {
     ifstream fichier(sNomFichier);
@@ -218,6 +304,16 @@ void CGraphOrient< CSommet,  CArc>::GROChargerDepuisFichier(const string& sNomFi
 
     fichier.close();
 }
+
+/****************************************************************
+    *GROModifierArc
+    * ***********************************************************
+    * Entrée : const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Modifie un arc en donnant en entrée les anciens
+    * sommets de l'arc ainsi que les nouveaux sommets.
+*****************************************************************/
 template<class CSommet, class CArc>
 void CGraphOrient<CSommet, CArc>::GROModifierArc(const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc)
 {
@@ -231,6 +327,14 @@ void CGraphOrient<CSommet, CArc>::GROModifierArc(const string& sDebutArc, const 
     }
 }
 
+/****************************************************************
+    *GROModifierSommet
+    * ***********************************************************
+    * Entrée : const string& sAncienNumero, const string& sNouveauNumero
+    * Nécessite : Rien
+    * Sortie : Rien
+    * Entraine : Modifie la valeur d'un sommet du graphe.
+*****************************************************************/
 template<class CSommet, class CArc>
 void CGraphOrient<CSommet, CArc>::GROModifierSommet(const string& sAncienNumero, const string& sNouveauNumero)
 {

@@ -1,23 +1,3 @@
-/*#pragma once
-#include <iostream>
-#include <vector>
-#include <memory>
-#include "CGraphOrient.h" // Assurez-vous d'inclure votre classe CGraphOrient.h
-
-using namespace std;
-
-template<class CSommet, class CArc>
-class CGraphe2 : public CGraphOrient<CSommet, CArc> {
-public:
-    CGraphe2() : CGraphOrient<CSommet, CArc>() {}
-
-    void GROAjouterArc(string sDebutArcStr, string sFinArcStr) {
-        this->GROAjouterSommet(sFinArcStr);
-        this->GROAjouterSommet(sDebutArcStr);
-        this->GROAjouterArc(sDebutArcStr, sFinArcStr);
-    }
-};
-*/
 /***********************************************************************
     * CLASSE :CGraph
     * ******************************************************************
@@ -40,7 +20,7 @@ public:
 #include "CArc.h"
 #include"CChargerfichier.h"
 #include "CGraphOrient.h"
-template <class Sommet, class Arc>
+template <class CSommet, class CArc>
 class CGraph : public CGraphOrient<CSommet, CArc> {
 
     //CONSTRUCTEURS ET MÉTHODES
