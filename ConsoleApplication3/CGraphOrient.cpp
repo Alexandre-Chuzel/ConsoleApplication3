@@ -219,25 +219,25 @@ void CGraphOrient< CSommet,  CArc>::GROChargerDepuisFichier(const string& sNomFi
     fichier.close();
 }
 template<class CSommet, class CArc>
-void CGraphOrient<CSommet, CArc>::GROModifierArc(const string& debutArc, const string& finArc, const string& newDebutArc, const string& newFinArc)
+void CGraphOrient<CSommet, CArc>::GROModifierArc(const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc)
 {
     typename vector<shared_ptr<CArc>>::iterator itArc;
     for (itArc = vaGROArcsDuGraphe.begin(); itArc != vaGROArcsDuGraphe.end(); ++itArc) {
-        if ((*itArc)->GetDebut() == debutArc && (*itArc)->GetFin() == finArc) {
-            (*itArc)->SetDebut(newDebutArc);
-            (*itArc)->SetFin(newFinArc);
+        if ((*itArc)->GetDebut() == sDebutArc && (*itArc)->GetFin() == sFinArc) {
+            (*itArc)->SetDebut(sNewDebutArc);
+            (*itArc)->SetFin(sNewFinArc);
             break;
         }
     }
 }
 
 template<class CSommet, class CArc>
-void CGraphOrient<CSommet, CArc>::GROModifierSommet(const string& ancienNumero, const string& nouveauNumero)
+void CGraphOrient<CSommet, CArc>::GROModifierSommet(const string& sAncienNumero, const string& sNouveauNumero)
 {
     typename vector<shared_ptr<CSommet>>::iterator itSommet;
     for (itSommet = vsGROSommetsDuGraphe.begin(); itSommet != vsGROSommetsDuGraphe.end(); ++itSommet) {
-        if ((*itSommet)->GetNumero() == ancienNumero) {
-            (*itSommet)->SetNumero(nouveauNumero);
+        if ((*itSommet)->GetNumero() == sAncienNumero) {
+            (*itSommet)->SetNumero(sNouveauNumero);
             break;
         }
     }

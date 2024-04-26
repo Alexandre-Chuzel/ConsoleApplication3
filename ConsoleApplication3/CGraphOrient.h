@@ -36,7 +36,7 @@ public:
     bool GROIsGrapheAffiches(vector<string> vsArcsDuGrapheAffiches, string sSommetActuel) const;
     CGraphOrient GROInverserGraphe();
     void GROChargerDepuisFichier(const string& sNomFichier);
-    void GROModifierArc(const string& debutArc, const string& finArc, const string& newDebutArc, const string& newFinArc);
-    void GROModifierSommet(const string& ancienNumero, const string& nouveauNumero);
+    void GROModifierArc(const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc);
+    void GROModifierSommet(const string& sAncienNumero, const string& sNouveauNumero);
 };
 #include "CGraphOrient.cpp"
