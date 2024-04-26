@@ -127,17 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Arc.cpp" />
+    <ClCompile Include="CArc.cpp" />
+    <ClCompile Include="CException.cpp" />
     <ClCompile Include="ConsoleApplication3.cpp" />
-    <ClCompile Include="Graphe.cpp" />
-    <ClCompile Include="Graphe2.cpp" />
-    <ClCompile Include="Sommet.cpp" />
+    <ClCompile Include="CGraphOrient.cpp" />
+    <ClCompile Include="CGraphe2.cpp" />
+    <ClCompile Include="CSommet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arc.h" />
-    <ClInclude Include="Graphe.h" />
-    <ClInclude Include="Graphe2.h" />
-    <ClInclude Include="Sommet.h" />
+    <ClInclude Include="CArc.h" />
+    <ClInclude Include="CChargerfichier.h" />
+    <ClInclude Include="CException.h" />
+    <ClInclude Include="CGraphOrient.h" />
+    <ClInclude Include="CGraph.h" />
+    <ClInclude Include="CSommet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
