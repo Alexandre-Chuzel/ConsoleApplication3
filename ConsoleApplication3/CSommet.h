@@ -25,8 +25,6 @@ class CSommet
 	//ATTRIBUTS :
 private:
 	string sNumSommet;
-	vector<shared_ptr<CArc>>vaPartDuSommet;
-	vector<shared_ptr<CArc>>vaArriveAuSommet;
 	//Constructeur et Getter/Setter :
 public:
 	CSommet(string sNum) : sNumSommet(sNum) {}
