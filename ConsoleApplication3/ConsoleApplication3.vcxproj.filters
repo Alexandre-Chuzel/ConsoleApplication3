@@ -18,16 +18,7 @@
     <ClCompile Include="ConsoleApplication3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CArc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CGraphOrient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CSommet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CGraphe2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CException.cpp">
@@ -45,9 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CChargerfichier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CException.h">

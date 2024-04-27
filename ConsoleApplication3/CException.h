@@ -7,7 +7,7 @@
 * lors de la levée d'exceptions dans votre programme
 * ******************************************************************
 * VERSION : 1.0
-* AUTEUR :
+* AUTEUR :Aissatou CISS - Alexandre CHUZEL-MARMOT
 * DATE : 28/04/2024
 * ******************************************************************
 * INCLUSIONS EXTERNES :

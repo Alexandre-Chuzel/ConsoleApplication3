@@ -18,7 +18,6 @@
 #include <algorithm>
 #include "CSommet.h"
 #include "CArc.h"
-#include"CChargerfichier.h"
 #include "CGraphOrient.h"
 template <class CSommet, class CArc>
 class CGraph : public CGraphOrient<CSommet, CArc> {

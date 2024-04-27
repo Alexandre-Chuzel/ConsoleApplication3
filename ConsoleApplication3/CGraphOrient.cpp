@@ -8,7 +8,6 @@
 #include "CSommet.h"
 #include "CArc.h"
 #include "CGraphOrient.h"
-#include"CChargerfichier.h"
 
 
 using namespace std;

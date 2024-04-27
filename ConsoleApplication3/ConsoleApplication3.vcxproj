@@ -127,16 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
     <ClCompile Include="ConsoleApplication3.cpp" />
     <ClCompile Include="CGraphOrient.cpp" />
-    <ClCompile Include="CGraphe2.cpp" />
-    <ClCompile Include="CSommet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CArc.h" />
-    <ClInclude Include="CChargerfichier.h" />
     <ClInclude Include="CException.h" />
     <ClInclude Include="CGraphOrient.h" />
     <ClInclude Include="CGraph.h" />

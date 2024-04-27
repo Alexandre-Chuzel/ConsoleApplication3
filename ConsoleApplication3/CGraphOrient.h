@@ -7,7 +7,7 @@
 * différents éléments/objets liés au graphe orienté.
 * ******************************************************************
 * VERSION : 1.0
-* AUTEUR :
+* AUTEUR :Aissatou CISS - Alexandre CHUZEL-MARMOT
 * DATE : 28/04/2024
 * ******************************************************************
 * INCLUSIONS EXTERNES :
@@ -20,7 +20,6 @@
 #include <algorithm>
 #include "CSommet.h"
 #include "CArc.h"
-#include"CChargerfichier.h"
 
 using namespace std;
 struct compare;
