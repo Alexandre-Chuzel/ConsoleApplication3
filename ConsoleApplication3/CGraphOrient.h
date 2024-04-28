@@ -47,7 +47,6 @@ public:
     void GROAfficherGraphe5() const;
     bool GROIsGrapheAffiches(vector<string> vsArcsDuGrapheAffiches, string sSommetActuel) const;
     CGraphOrient GROInverserGraphe();
-    void GROChargerDepuisFichier(const string& sNomFichier);
     void GROModifierArc(const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc);
     void GROModifierSommet(const string& sAncienNumero, const string& sNouveauNumero);
 };

@@ -41,5 +41,8 @@
     <ClInclude Include="CException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CChargerFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
