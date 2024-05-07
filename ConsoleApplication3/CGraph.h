@@ -22,6 +22,9 @@
 template <class CSommet, class CArc>
 class CGraph : public CGraphOrient<CSommet, CArc> {
 
+private: 
+    vector<CSommet*> Smax;
+
     //CONSTRUCTEURS ET MÉTHODES
 public:
 
@@ -69,7 +72,7 @@ public:
         return false; // L'arc n'existe pas
     }
 
-    void GRACalcStableMax(CGraph<CSommet, CArc>& Graphe, vector<CSommet*> S, vector<CSommet*> Ss, vector<CSommet*>& Smax);
+    void GRACalcStableMax(CGraph<CSommet, CArc>& Graphe, vector<CSommet*> S, vector<CSommet*> Ss);
 };
 
 
