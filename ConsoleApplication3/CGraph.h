@@ -59,6 +59,17 @@ public:
         this->GROAjouterArc(sSommet1, sSommet2);
         this->GROAjouterArc(sSommet2, sSommet1);
     }
+
+    bool GROEstArc(const string& sSommet1, const string& sSommet2) const {
+        for (const auto& arc : this->GetArcs()) {
+            if (arc->GetDebut()->GetNumero() == sSommet1 && arc->GetFin()->GetNumero() == sSommet2) {
+                return true; // L'arc existe
+            }
+        }
+        return false; // L'arc n'existe pas
+    }
+
+    void GRACalcStableMax(CGraph<CSommet, CArc>& Graphe, vector<CSommet*> S, vector<CSommet*> Ss, vector<CSommet*>& Smax);
 };
 
 

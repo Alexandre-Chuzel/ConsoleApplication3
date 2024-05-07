@@ -24,6 +24,9 @@
     <ClCompile Include="CException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CGraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGraphOrient.h">
