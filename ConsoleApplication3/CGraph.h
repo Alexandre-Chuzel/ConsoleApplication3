@@ -74,5 +74,5 @@ public:
 
     void GRACalcStableMax(CGraph<CSommet, CArc>& Graphe, vector<CSommet*> S, vector<CSommet*> Ss);
 };
-
+ 
 
