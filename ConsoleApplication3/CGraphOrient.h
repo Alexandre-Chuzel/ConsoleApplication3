@@ -32,8 +32,17 @@ private:
     vector<shared_ptr<CArc>> vaGROArcsDuGraphe;
     //CONSTRUCTEURS ET MÉTHODES
 public:
-    vector<shared_ptr<CSommet>> GetSommets() {
+    vector<shared_ptr<CSommet>>& GetSommets() {
         return vsGROSommetsDuGraphe;
+    }
+    vector<shared_ptr<CArc>>& GetArcs() {
+        return vaGROArcsDuGraphe;
+    }
+    void SetSommets(vector<shared_ptr<CSommet>>& newliste) {
+         vsGROSommetsDuGraphe=newliste;
+    }
+    void SetArcs(vector<shared_ptr<CArc>>& newliste) {
+         vaGROArcsDuGraphe=newliste;
     }
     CGraphOrient();
     CGraphOrient(vector<shared_ptr<CSommet>> vsSommets, vector<shared_ptr<CArc>> vaArcs);
@@ -50,4 +59,3 @@ public:
     void GROModifierArc(const string& sDebutArc, const string& sFinArc, const string& sNewDebutArc, const string& sNewFinArc);
     void GROModifierSommet(const string& sAncienNumero, const string& sNouveauNumero);
 };
-#include "CGraphOrient.cpp"

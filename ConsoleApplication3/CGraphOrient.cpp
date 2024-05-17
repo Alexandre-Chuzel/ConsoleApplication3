@@ -23,8 +23,8 @@ CGraphOrient< CSommet,  CArc>::~CGraphOrient() {
 
 template <class CSommet, class CArc>
 CGraphOrient< CSommet,  CArc>::CGraphOrient(vector<shared_ptr<CSommet>> vsSommets, vector<shared_ptr<CArc>> vaArcs){
-    this->vsGROSommetsDuGraphe = vsSommets;
-    this->vaGROArcsDuGraphe = vaArcs;
+    this->vsGROSommetsDuGraphe = std::move(vsSommets);
+    this->vaGROArcsDuGraphe = std::move(vaArcs);
 }
 
 /****************************************************************

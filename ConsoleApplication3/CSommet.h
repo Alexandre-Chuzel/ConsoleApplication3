@@ -34,5 +34,8 @@ public:
 	void SetNumero(string sNewNumber ) {
 		sNumSommet = sNewNumber;
 	}
+	string GetNumero() {
+		return sNumSommet;
+	}
 };
 
