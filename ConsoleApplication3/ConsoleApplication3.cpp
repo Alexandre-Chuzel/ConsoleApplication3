@@ -27,11 +27,11 @@ int main(
     graphe.GRAAjouterArete("46", "151");
     graphe.GRAAjouterArete("6", "7");
     graphe.GRAAjouterArete("3", "14");
-    graphe.GRAAjouterArete("3", "14");
     graphe.GRAAjouterArete("151", "7");
     graphe.GROAfficherGraphe2();
-    graphe.GRACalcStableMax(graphe, vsEnsemble);
-    graphe.displayVector();
+    int a=graphe.GRACalcStableMax(graphe, vsEnsemble);
+    //graphe.displayVector();
+    //graphe.displayVector2(newEnsemble);
 
 
     return 0;
