@@ -26,7 +26,7 @@ class CGraph : public CGraphOrient<CSommet, CArc> {
 public:
     int result;
     vector<shared_ptr<CSommet>> vsEnsemblemax;
-
+  
     /****************************************************************
         *GRAAjouterArete
         * ***********************************************************
@@ -68,8 +68,8 @@ public:
        * Entrée : CGraph<CSommet, CArc>& graphe, vector<shared_ptr<CSommet>>& vsEnsemble
        * Nécessite : Un graphe non orienté déja rempli.
        * Sortie : Rien
-       * Entraine : Ajoute une arête au graphe en ajoutant deux arcs
-       * entre les deux sommets
+       * Entraine : Calcule le plus grand ensemble de sommets non 
+       * liés.
    *****************************************************************/
 
     int GRACalcStableMax(CGraph<CSommet, CArc>& graphe, vector<shared_ptr<CSommet>>& vsEnsemble) {
@@ -82,7 +82,6 @@ public:
         if (vsEnsemblesommet.empty()) {
             if (vsEnsemble.size() > vsEnsemblemax.size()) {
                 vsEnsemblemax = vsEnsemble;
-                displayVector();
                 result = -1;
             }
         }
@@ -124,17 +123,36 @@ public:
             }
         }
     }
-    void displayVector() {
-        cout << "Contenu de vsEnsemblemax:" << endl;
+    /****************************************************************
+       *GRADisplayVector
+       * ***********************************************************
+       * Entrée : Rien
+       * Nécessite : Un vecteur de sommets rempli.
+       * Sortie : Rien
+       * Entraine : Affiche le contenu d'un vecteur de sommets.
+   *****************************************************************/
+    void GRADisplayVector() {
+        cout << "Un ensemble maximum de sommets indépendants serait :" << endl;
         for (const auto& sommet : vsEnsemblemax) {
             cout << sommet->GetNumero() << endl;
         }
     }
-    void displayVector2(vector<shared_ptr<CSommet>>& vsEnsemble) {
-        cout << "Contenu de vsEnsemblemax:" << endl;
-        for (const auto& sommet : vsEnsemblemax) {
+    /****************************************************************
+       *GRADisplayVector2
+       * ***********************************************************
+       * Entrée : vector<shared_ptr<CSommet>>& vsEnsemble
+       * Nécessite : Un vecteur de sommets rempli.
+       * Sortie : Rien
+       * Entraine : Affiche le contenu d'un vecteur de sommets.
+   *****************************************************************/
+    void GRADisplayVector2(vector<shared_ptr<CSommet>>& vsEnsemble) {
+        cout << "Un ensemble maximum de sommets indépendants serait :" << endl;
+        for (const auto& sommet : vsEnsemble) {
             cout << sommet->GetNumero() << endl;
         }
+    }
+    vector<shared_ptr<CSommet>>& GetvsEnsemblemax(){
+      return vsEnsemblemax;
     }
 
 };
