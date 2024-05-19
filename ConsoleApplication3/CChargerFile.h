@@ -90,7 +90,7 @@ public:
                         transform(ligne.begin() + posDebutFin, ligne.begin() + posFin, ligne.begin() + posDebutFin, ::tolower);
                         if (ligne.find("debut=") != std::string::npos && ligne.find("fin=") != string::npos) {
                             string sDebutArcStr = ligne.substr(posDebut + 1, posDebutFin - posDebut - 1);
-                            string sFinArcStr = ligne.substr(posDebut + posDebutFin);
+                            string sFinArcStr = ligne.substr(posDebut + posDebutFin+1);
                             graphe.GROAjouterArc(sDebutArcStr, sFinArcStr);
                         }
                     }

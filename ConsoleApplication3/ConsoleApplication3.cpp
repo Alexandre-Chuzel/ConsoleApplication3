@@ -9,7 +9,7 @@
 int main(
     int argc, char* argv[]
 ) {
-    cout << "Version finale de l'application v2 :" << endl;
+    cout << "Version finale de l'application :" << endl;
     CGraphOrient<CSommet, CArc> graphe3;
     CChargerFile charger;
     string file_path = argv[1];

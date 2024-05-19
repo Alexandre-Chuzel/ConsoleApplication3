@@ -81,7 +81,6 @@ int CGraph<CSommet, CArc>::GRACalcStableMax(CGraph<CSommet, CArc>& graphe, vecto
             vsEnsembleCopy.push_back(*it);
             auto sDelsommet = (*it)->GetNumero();
             vsEnsemblesommetCopy.erase(remove(vsEnsemblesommetCopy.begin(), vsEnsemblesommetCopy.end(), *it), vsEnsemblesommetCopy.end());
-
             for (auto it2 = graphe.GetArcs().begin(); it2 != graphe.GetArcs().end(); it2++) {
                 if ((*it2)->GetDebut() == sDelsommet || (*it2)->GetFin() == sDelsommet) {
                     auto sConnectedSommet = (*it2)->GetDebut() == sDelsommet ? (*it2)->GetFin() : (*it2)->GetDebut();
